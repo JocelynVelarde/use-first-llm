@@ -15,17 +15,17 @@ def generate_text(prompt):
     )
     return completion.choices[0].message.content
 
+def generate_image(prompt):
+    response = client.images.generate(
+        model="dall-e-3",
+        prompt=prompt,
+        size="1024x1024",
+        quality="standard",
+        n=1,
+    )
+    image_url = response.data[0].url
 
-response = client.images.generate(
-    model="dall-e-3",
-    prompt="otter in a pond",
-    size="1024x1024",
-    quality="standard",
-    n=1,
-)
-image_url = response.data[0].url
+    image_response = requests.get(image_url)
 
-image_response = requests.get(image_url)
-
-with open("otter.png", 'wb') as file:
-    file.write(image_response.content)
+    with open("otter.png", 'wb') as file:
+        file.write(image_response.content)
