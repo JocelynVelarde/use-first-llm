@@ -1,8 +1,8 @@
 # This file will serve as our GPT connection
-
-api_key = "xxxxx"
-
 from openai import OpenAI
+import streamlit as st
+
+api_key = st.secrets["api_key"]
 client = OpenAI(api_key=api_key)
 completion = client.chat.completions.create(
     model="gpt-4o",
