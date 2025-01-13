@@ -15,4 +15,4 @@ def generate_gemini_text(prompt, tokens):
             temperature=0.1,
         )
     )
-    return response.text
+    st.text(response.text)
